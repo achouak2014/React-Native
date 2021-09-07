@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+  <script>
+      const PI = 3.14 ; //on peut pas changer sa valeur 
+      let a =5 ; //il est disponible que dans ca fonction comme if 
+    let b = a * 3 ;
+    let tab = [2,5,9,7];
+    //console.log(tab[2]);
+    //console.log(a);
+    //console.log("le troisiéme tableau est :" + tab[2]);
+    
+
+    /*** les fonction ***/
+    function bonjour() {
+        console.log("bonjour");
+    }
+    function aurevoir (personne){
+        console.log("au revoir " + personne );
+    }
+
+    function addition(a , b ){
+        return a+b ; 
+    }
+
+    function soustraction(a,b){
+        return a-b ; 
+    }
+
+    function multiplication(a,b){
+        return a*b;
+    }
+    function division(a,b){
+        return a/b ; 
+    }
+    
+
+ /*** les appel des fonction 
+
+   aurevoir("julien");
+    console.log(addition(3,8));
+    console.log(soustraction(5,2)) ;
+    console.log(multiplication(3,2));
+    console.log(division(9,3));
+    console.log(soustraction(multiplication(3,2),4));
+    console.log(addition(division(multiplication(2,8),3),3));
+    console.log(division(multiplication(addition(3,5),addition(6,7)),2));
+*/
+
+ //** les tabeaux **//
+
+ let notes = [2,3,5,7,8];
+
+ function half(array){
+ for(let i=0; i<array.length ; i++ ){
+     if(array[i] % 2=== 0){
+              console.log(array[i]);   
+      }  
+ }
+ }
+
+ half(notes);
+ 
+
+ /**** les object ****/
+
+ let coord1= {  x:50 ,y:32 };
+ let coord2 = { x:20, y:12};
+
+ function addCoord(c1 ,c2){
+    
+let resultat = {   
+     x : c1.x + c2.x ,
+     y : c1.y + c2.y  
+    };
+     return resultat;
+     
+ }
+
+ console.log(addCoord(coord1,coord2));
+
+ let coord ={
+     x:10,
+     y:20,
+     add:function(coord){
+           this.x += coord.x 
+           this.y+= coord.y 
+         } , 
+    sous:function(coord){
+        this.x -=coord.x
+        this.y -= coord.y
+
+    },
+    div:function(coord){
+        this.x /=coord.x
+        this.y /= coord.y
+
+    },
+    mul:function(coord){
+        this.x *=coord.x
+        this.y *= coord.y
+
+    },
+   
+ }
+ 
+coord.add(coord1);
+console.log(coord);
+
+
+
+ </script>  
+</body>
+</html>

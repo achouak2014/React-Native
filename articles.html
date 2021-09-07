@@ -1,0 +1,85 @@
+<!doctype>
+<html>
+	<head>
+			<meta charset="utf-8">
+			<title>Créer des balises en JS</title>
+			<style>
+			 header { display: flex; align-items: center; justify-content: space-between; }
+			 h1 { margin: 0; }
+			 .navigation ul { display: flex; }
+			 ul li { list-style-type: none; margin-left: 10px; }
+			 
+			 h3 { margin: 0; }
+			 .article { padding: 10px; }
+			 .article:nth-child(odd) { background: #EEF; }
+			 .article:nth-child(even) { background: #EEC; }
+			 .meta { display: flex; }
+			 .date { margin-left: 10px; }
+			</style>
+	</head>
+	<body>
+			
+			<div id="content"></div>
+			
+			<script src="dom.js"></script>
+			<script>
+
+			 // Récupérer les données au format JSON depuis internet
+			 fetch("https://reqres.in/api/users?page=1")
+					 .then(function(response) {
+							 return response.json();
+					 })
+					 .then(function(json) {
+							 buildSite(json);
+					 })
+
+			 // COMPOSANT : Header
+			 function Header(sitename, links) {
+
+					 let menu = [];
+					 for(let l of links) {
+							 menu.push(
+									 createTag("li", null, [
+											 createTag("a", {href: "#"}, [l])
+									 ])
+							 );
+					 }
+					 
+					 return createTag("header", null, [
+							 createTag("h1", null, [sitename]),
+							 createTag("div", {class: "navigation"}, [
+									 createTag("ul", null, menu),
+							 ])
+					 ])
+			 }
+
+			 // COMPOSANT : Article
+			 function Article(title, author, date) {
+					 return createTag("div", {class: "article"}, [
+							 createTag("h3", null, [title]),
+							 createTag("div", {class: "meta"}, [
+									 createTag("div", {class: "author"}, [
+											 createTag("span", null, ["auteur : "]),
+											 createTag("span", null, [author])
+									 ]),
+									 createTag("div", {class: "date"}, [
+											 createTag("span", null, ["date : "]),
+											 createTag("span", null, [date])
+									 ])
+							 ])
+					 ]);
+			 }
+
+			 function buildSite(json) {
+					 // Ce qu'il ce passe lorsque j'ai reçu les données
+					 let content = document.getElementById("content");
+					 content.append(Header("Mon blog", [ "Accueil", "Articles", "Contact", "À propos" ]));
+					 for(let a of json.data) {
+							 content.append(Article(a.email, a.first_name, a.last_name));
+					 }
+			 }
+
+
+			</script>
+	</body>
+</html>

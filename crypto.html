@@ -1,0 +1,51 @@
+<!doctype>
+<html>
+		<head>
+				<meta charset="utf-8">
+		</head>
+		<body>
+				<script>
+				 // 1. Convertir une chaîne en un tableau de nombres
+				 // 2. Additionner ces nombres
+				 // 3. Convertir le tableau de nombres en une chaîne de caractères
+
+				 const word = 'bonjour';
+
+				 function strToNum(str) {
+						 let arr = [];
+						 for(let i = 0; i < str.length; i++) {
+								 arr.push( str.charCodeAt(i) );
+						 }
+						 return Array.from(str).map(e => e.charCodeAt(0));
+				 }
+
+				 // arrayAdd(arr, num)
+
+				 function arrayXor(arr, num) {
+						 let resultat = [];
+						 for(let i = 0; i < arr.length; i++) {
+								 resultat.push(arr[i] ^ num);
+						 }
+						 return resultat;
+				 }
+
+				 function numToStr(arr) {
+						 let str = "";
+						 for(let i = 0; i < arr.length; i++) {
+								 str += String.fromCharCode(arr[i]);
+						 }
+						 return str;
+				 }
+
+				 function cesar(str, num) {
+						 let arr = strToNum(str);
+						 let enc_arr = arrayXor(arr, num);
+						 let enc = numToStr(enc_arr);
+						 return enc;
+				 }
+
+				 console.log(cesar("almilvq", 3));
+
+				</script>
+		</body>
+</html>
